@@ -1,7 +1,7 @@
 h1. validates_im -- Instant messenger account validations for ActiveRecord
 
 | *Author* | Tim Morgan |
-| *Version* | 1.0 (Oct 30, 2010) |
+| *Version* | 1.1 (Aug 31, 2011) |
 | *License* | Released under the MIT license. |
 
 h2. About
