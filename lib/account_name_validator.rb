@@ -55,7 +55,7 @@
 #   validations.
 
 class AccountNameValidator < ActiveModel::EachValidator
-  class_inheritable_array :validations
+  class_attribute :validations
   self.validations = Array.new
 
   # @private
@@ -94,7 +94,7 @@ class AccountNameValidator < ActiveModel::EachValidator
 
   def self.add_validation(key, &block)
     return unless block_given?
-    self.validations << [ block, key ]
+    self.validations += [[ block, key ]]
   end
 
   # Enforces a minimum length on account names. Uses the "too_short" error
