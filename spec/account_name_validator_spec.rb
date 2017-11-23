@@ -4,13 +4,14 @@ module SpecSupport
   class TestAccountNameValidator < AccountNameValidator; end
   class FakeModel
     extend ActiveModel::Translation
+    extend ActiveModel::Naming
     def errors() @errors ||= ActiveModel::Errors.new(self) end
     def self.lookup_ancestors() [ self ] end
     def read_attribute_for_validation(_) "mock" end
   end
 end
 
-describe AccountNameValidator do
+RSpec.describe AccountNameValidator do
   before :each do
     SpecSupport::TestAccountNameValidator.validations.clear
     @model = SpecSupport::FakeModel.new
