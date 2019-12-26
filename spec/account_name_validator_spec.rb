@@ -6,7 +6,7 @@ module SpecSupport
     extend ActiveModel::Translation
     extend ActiveModel::Naming
     def errors() @errors ||= ActiveModel::Errors.new(self) end
-    def self.lookup_ancestors() [ self ] end
+    def self.lookup_ancestors() [self] end
     def read_attribute_for_validation(_) "mock" end
   end
 end
@@ -19,12 +19,12 @@ RSpec.describe AccountNameValidator do
 
   describe ".error_key_prefix" do
     it "should be the downcased name of the validator by default" do
-      expect(SpecSupport::TestAccountNameValidator.error_key_prefix).to eql(:test_account_name)
+      expect(SpecSupport::TestAccountNameValidator.error_key_prefix).to be(:test_account_name)
     end
 
     it "should be able to be set" do
       SpecSupport::TestAccountNameValidator.error_key_prefix(:foo)
-      expect(SpecSupport::TestAccountNameValidator.error_key_prefix).to eql(:foo)
+      expect(SpecSupport::TestAccountNameValidator.error_key_prefix).to be(:foo)
       SpecSupport::TestAccountNameValidator.instance_variable_set :@error_key_prefix, nil
     end
   end
@@ -50,9 +50,9 @@ RSpec.describe AccountNameValidator do
     it "should use a :message option for the message" do
       SpecSupport::TestAccountNameValidator.add_validation(:not_foo) { |value| value == 'foo' }
       SpecSupport::TestAccountNameValidator.new(attributes: :field, message: 'bar').validate_each(@model, :field, 'bar')
-      expect(@model.errors[:field]).to eql([ 'bar' ])
+      expect(@model.errors[:field]).to eql(%w[bar])
     end
-    
+
     it "should typecast the value to a string" do
       SpecSupport::TestAccountNameValidator.add_validation(:not_foo) { |value| value == 'foo' }
       SpecSupport::TestAccountNameValidator.new(attributes: :field).validate_each(@model, :field, :foo)
