@@ -15,7 +15,7 @@ Jeweler::Tasks.new do |gem|
   gem.summary     = %(A set of Rails validators for common instant messaging services)
   gem.description = %(Adds ActiveModel validators for common instant messaging services like Skype and AIM.)
   gem.email       = "git@timothymorgan.info"
-  gem.homepage    = "http://github.com/riscfuture/validates_im"
+  gem.homepage    = "https://github.com/riscfuture/validates_im"
   gem.authors     = ["Tim Morgan"]
   gem.add_dependency 'activerecord', '>= 3.0'
   gem.files = %w[lib/**/* validates_im.gemspec README.textile LICENSE]
