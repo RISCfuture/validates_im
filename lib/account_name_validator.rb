@@ -62,10 +62,11 @@ class AccountNameValidator < ActiveModel::EachValidator
 
   # @private
   def validate_each(record, attribute, value)
-    return if options[:allow_nil] and value.nil?
-    return if options[:allow_blank] and value.blank?
+    return if options[:allow_nil] && value.nil?
+    return if options[:allow_blank] && value.blank?
     return unless self.class.validations
-    self.class.validations.each { |block, key| record.errors.add(attribute, options[:message] || record.errors.generate_message(attribute, :"#{self.class.error_key_prefix}_#{key}")) if !block[value.to_s] }
+
+    self.class.validations.each { |block, key| record.errors.add(attribute, options[:message] || record.errors.generate_message(attribute, :"#{self.class.error_key_prefix}_#{key}")) unless block[value.to_s] }
   end
 
   protected
@@ -79,7 +80,7 @@ class AccountNameValidator < ActiveModel::EachValidator
   #   @param [Symbol] value The new error message key prefix.
 
   def self.error_key_prefix(value=nil)
-    if value then
+    if value
       @error_key_prefix = value
     else
       return @error_key_prefix || to_s.demodulize.sub(/Validator$/, '').underscore.to_sym
@@ -96,7 +97,8 @@ class AccountNameValidator < ActiveModel::EachValidator
 
   def self.add_validation(key, &block)
     return unless block_given?
-    self.validations += [[ block, key ]]
+
+    self.validations += [[block, key]]
   end
 
   # Enforces a minimum length on account names. Uses the "too_short" error
