@@ -69,8 +69,6 @@ class AccountNameValidator < ActiveModel::EachValidator
     self.class.validations.each { |block, key| record.errors.add(attribute, options[:message] || record.errors.generate_message(attribute, :"#{self.class.error_key_prefix}_#{key}")) unless block[value.to_s] }
   end
 
-  protected
-
   # @overload error_key_prefix
   #   Returns the prefix for error message keys used by this class.
   #   @return [Symbol] The error message key prefix.
