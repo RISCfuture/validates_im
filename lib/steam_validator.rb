@@ -3,13 +3,22 @@
 #
 # The following error message keys are used to localize invalid screen names.
 #
-# | @steam_too_short@ | Steam ID is less than 6 characters. |
-# | @steam_too_long@ | Steam ID is over 32 characters. |
-# | @steam_invalid_chars@ | Steam ID contains invalid characters. |
-# | @steam_invalid_first_char@ | Steam ID doesn't start with a letter. |
+# |                       |                                       |
+# |:----------------------|:--------------------------------------|
+# | `steam_too_short`     | Steam ID is less than 6 characters.   |
+# | `steam_too_long`      | Steam ID is over 32 characters.       |
+# | `steam_invalid_chars` | Steam ID contains invalid characters. |
 #
 # @example
 #   validates :steam_id, steam: true
+#
+# Options
+# -------
+#
+# |              |                                                  |
+# |:-------------|:-------------------------------------------------|
+# | `:message`   | A custom message to use if the email is invalid. |
+# | `:allow_nil` | If true, `nil` values are allowed.               |
 
 class SteamValidator < AccountNameValidator
   min_length 3

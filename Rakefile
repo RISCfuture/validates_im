@@ -11,12 +11,12 @@ require 'rake'
 
 require 'jeweler'
 Jeweler::Tasks.new do |gem|
-  gem.name = "validates_im"
-  gem.summary = %Q{A set of Rails validators for common instant messaging services}
+  gem.name        = "validates_im"
+  gem.summary     = %Q{A set of Rails validators for common instant messaging services}
   gem.description = %Q{Adds ActiveModel validators for common instant messaging services like Skype and AIM.}
-  gem.email = "git@timothymorgan.info"
-  gem.homepage = "http://github.com/riscfuture/validates_im"
-  gem.authors = [ "Tim Morgan" ]
+  gem.email       = "git@timothymorgan.info"
+  gem.homepage    = "http://github.com/riscfuture/validates_im"
+  gem.authors     = ["Tim Morgan"]
   gem.add_dependency 'activerecord', '>= 3.0'
   gem.files = %w( lib/**/* validates_im.gemspec README.textile LICENSE )
 end
@@ -26,14 +26,23 @@ require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new
 
 require 'yard'
+
+# bring sexy back (sexy == tables)
+module YARD::Templates::Helpers::HtmlHelper
+  def html_markup_markdown(text)
+    markup_class(:markdown).new(text, :gh_blockcode, :fenced_code, :autolink, :tables, :no_intraemphasis).to_html
+  end
+end
+
 YARD::Rake::YardocTask.new('doc') do |doc|
-  doc.options << "-m" << "textile"
-  doc.options << "--protected"
-  doc.options << "-r" << "README.textile"
-  doc.options << "-o" << "doc"
-  doc.options << "--title" << "validates_im Documentation"
-  
-  doc.files = [ 'lib/*_validator.rb', 'README.textile' ]
+  doc.options << '-m' << 'markdown'
+  doc.options << '-M' << 'redcarpet'
+  doc.options << '--protected' << '--no-private'
+  doc.options << '-r' << 'README.md'
+  doc.options << '-o' << 'doc'
+  doc.options << '--title' << 'validates_im Documentation'
+
+  doc.files = %w(lib/*_validator.rb README.md)
 end
 
 task(default: :spec)
