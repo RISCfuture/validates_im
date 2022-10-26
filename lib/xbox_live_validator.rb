@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates Xbox Live gamertags. From the Xbox Live website:
 #
 # > Gamertags can only contain letters, numbers, and spaces, and can't begin
@@ -26,8 +28,8 @@
 # | `:allow_nil` | If true, `nil` values are allowed.               |
 
 class XboxLiveValidator < AccountNameValidator
-  error_key_prefix 'xbox'
+  error_key_prefix "xbox"
   max_length 15
-  valid_chars 'A-Za-z0-9 '
-  first_char 'A-Za-z'
+  valid_chars "A-Za-z0-9 "
+  first_char "A-Za-z"
 end

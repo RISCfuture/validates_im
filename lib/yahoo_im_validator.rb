@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates Yahoo! Instant Messenger screen names. According to the Yahoo!
 # website:
 #
@@ -26,10 +28,10 @@
 # | `:allow_nil` | If true, `nil` values are allowed.               |
 
 class YahooImValidator < AccountNameValidator
-  error_key_prefix 'yim'
+  error_key_prefix "yim"
   min_length 4
   max_length 32
   valid_chars 'A-Za-z0-9_\\.'
-  first_char 'A-Za-z'
-  add_validation(:multiple_periods) { |value| value.count('.') < 2 }
+  first_char "A-Za-z"
+  add_validation(:multiple_periods) { |value| value.count(".") < 2 }
 end

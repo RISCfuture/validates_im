@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates Skype screen names. From the Skype website:
 #
 # > It must be between 6-32 characters, start with a letter and contain only
@@ -26,6 +28,6 @@
 class SkypeValidator < AccountNameValidator
   min_length 6
   max_length 32
-  valid_chars 'A-Za-z0-9'
-  first_char 'A-Za-z'
+  valid_chars "A-Za-z0-9"
+  first_char "A-Za-z"
 end

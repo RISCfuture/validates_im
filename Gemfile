@@ -1,15 +1,17 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+
+source "https://rubygems.org"
 
 # DEPENDENCIES
-gem 'activerecord', '>= 3.1', require: 'active_record'
+gem "activerecord", ">= 3.1", require: "active_record"
 
 group :development do
   # DEVELOPMENT
-  gem 'jeweler'
-  gem 'psych', '< 4.0' # jeweler incompatibility
-  gem 'redcarpet', require: nil
-  gem 'yard'
+  gem "jeweler"
+  gem "psych", "< 4.0" # jeweler incompatibility
+  gem "redcarpet", require: nil
+  gem "yard"
 
   # TEST
-  gem 'rspec'
+  gem "rspec"
 end

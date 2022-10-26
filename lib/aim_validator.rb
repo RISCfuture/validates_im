@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates AOL Instant Messenger screen names. According to the AOL website:
 #
 # > 3-16 letters or numbers. It must start with a letter.
@@ -25,6 +27,6 @@
 class AimValidator < AccountNameValidator
   min_length 3
   max_length 16
-  valid_chars 'A-Za-z0-9'
-  first_char 'A-Za-z'
+  valid_chars "A-Za-z0-9"
+  first_char "A-Za-z"
 end

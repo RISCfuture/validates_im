@@ -1,5 +1,7 @@
-require 'rubygems'
-require 'bundler'
+# frozen_string_literal: true
+
+require "rubygems"
+require "bundler"
 begin
   Bundler.setup(:default, :development)
 rescue Bundler::BundlerError => e
@@ -7,9 +9,9 @@ rescue Bundler::BundlerError => e
   warn "Run `bundle install` to install missing gems"
   exit e.status_code
 end
-require 'rake'
+require "rake"
 
-require 'jeweler'
+require "jeweler"
 Jeweler::Tasks.new do |gem|
   gem.name        = "validates_im"
   gem.summary     = %(A set of Rails validators for common instant messaging services)
@@ -17,15 +19,15 @@ Jeweler::Tasks.new do |gem|
   gem.email       = "git@timothymorgan.info"
   gem.homepage    = "https://github.com/riscfuture/validates_im"
   gem.authors     = ["Tim Morgan"]
-  gem.add_dependency 'activerecord', '>= 3.0'
+  gem.add_dependency "activerecord", ">= 3.0"
   gem.files = %w[lib/**/* validates_im.gemspec README.textile LICENSE]
 end
 Jeweler::RubygemsDotOrgTasks.new
 
-require 'rspec/core/rake_task'
+require "rspec/core/rake_task"
 RSpec::Core::RakeTask.new
 
-require 'yard'
+require "yard"
 
 # bring sexy back (sexy == tables)
 module YARD::Templates::Helpers::HtmlHelper
@@ -34,13 +36,13 @@ module YARD::Templates::Helpers::HtmlHelper
   end
 end
 
-YARD::Rake::YardocTask.new('doc') do |doc|
-  doc.options << '-m' << 'markdown'
-  doc.options << '-M' << 'redcarpet'
-  doc.options << '--protected' << '--no-private'
-  doc.options << '-r' << 'README.md'
-  doc.options << '-o' << 'doc'
-  doc.options << '--title' << 'validates_im Documentation'
+YARD::Rake::YardocTask.new("doc") do |doc|
+  doc.options << "-m" << "markdown"
+  doc.options << "-M" << "redcarpet"
+  doc.options << "--protected" << "--no-private"
+  doc.options << "-r" << "README.md"
+  doc.options << "-o" << "doc"
+  doc.options << "--title" << "validates_im Documentation"
 
   doc.files = %w[lib/*_validator.rb README.md]
 end

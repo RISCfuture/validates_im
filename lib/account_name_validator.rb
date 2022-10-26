@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Generic `EachValidator` that validates account names on various communication
 # services such as Skype, Yahoo!, etc. This class provides a simple DSL for
 # describing valid account names on these sites, performing all validation for
@@ -78,11 +80,9 @@ class AccountNameValidator < ActiveModel::EachValidator
   #   @param [Symbol] value The new error message key prefix.
 
   def self.error_key_prefix(value=nil)
-    if value
-      @error_key_prefix = value
-    else
-      return @error_key_prefix || to_s.demodulize.sub(/Validator$/, '').underscore.to_sym
-    end
+    return @error_key_prefix || to_s.demodulize.sub(/Validator$/, "").underscore.to_sym unless value
+
+    @error_key_prefix = value
   end
 
   # Describes a custom restraint on account names.
@@ -94,7 +94,7 @@ class AccountNameValidator < ActiveModel::EachValidator
   # @yieldreturn [true, false] Whether or not the validation succeeded.
 
   def self.add_validation(key, &block)
-    return unless block_given?
+    return unless block
 
     self.validations += [[block, key]]
   end

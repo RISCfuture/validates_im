@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Validates steam account IDs. Steam IDs are between 3 and 63 characters long
 # and consist of letters, numbers, or underscores.
 #
@@ -23,5 +25,5 @@
 class SteamValidator < AccountNameValidator
   min_length 3
   max_length 63
-  valid_chars 'A-Za-z0-9_'
+  valid_chars "A-Za-z0-9_"
 end
