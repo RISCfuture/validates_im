@@ -25,7 +25,7 @@ Installation
 To install, simply add this gem to your Rails project's @Gemfile@:
 
 ```` ruby
-gem 'validates_im'
+gem "validates_im"
 ````
 
 Usage
@@ -36,7 +36,7 @@ method. An example:
 
 ```` ruby
 validates :screen_name,
-          aim: true,
+          aim:      true,
           presence: true
 ````
 

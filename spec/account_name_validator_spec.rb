@@ -9,9 +9,9 @@ module SpecSupport
   class FakeModel
     extend ActiveModel::Translation
     extend ActiveModel::Naming
-    def errors() @errors ||= ActiveModel::Errors.new(self) end
-    def self.lookup_ancestors() [self] end
-    def read_attribute_for_validation(_) "mock" end
+    def errors = @errors ||= ActiveModel::Errors.new(self)
+    def self.lookup_ancestors = [self]
+    def read_attribute_for_validation(_) = "mock"
   end
 end
 
