@@ -4,6 +4,7 @@ source "https://rubygems.org"
 
 # DEPENDENCIES
 gem "activerecord", ">= 3.1", require: "active_record"
+gem "activesupport", require: "active_support"
 
 group :development do
   # DEVELOPMENT

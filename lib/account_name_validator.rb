@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "active_support/core_ext/string/filters"
+
 # Generic `EachValidator` that validates account names on various communication
 # services such as Skype, Yahoo!, etc. This class provides a simple DSL for
 # describing valid account names on these sites, performing all validation for
