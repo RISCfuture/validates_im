@@ -11,4 +11,4 @@ inherit_mode:
 AllCops:
   Exclude:
     - "*.gemspec" # temporarily until we move off of juweiler
-  TargetRubyVersion: 3.3
+  TargetRubyVersion: 3.4
