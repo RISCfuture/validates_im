@@ -1,6 +1,10 @@
 validates_im
 ============
 
+[![CI](https://github.com/RISCfuture/validates_im/actions/workflows/ruby.yml/badge.svg)](https://github.com/RISCfuture/validates_im/actions/workflows/ruby.yml)
+[![Gem Version](https://img.shields.io/gem/v/validates_im.svg)](https://rubygems.org/gems/validates_im)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 **Instant messenger account validations for ActiveRecord**
 
 |             |                                 |
