@@ -1,50 +1,23 @@
 # frozen_string_literal: true
 
-require "rubygems"
-require "bundler"
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  warn e.message
-  warn "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
-require "rake"
-
-require "jeweler"
-Jeweler::Tasks.new do |gem|
-  gem.name        = "validates_im"
-  gem.summary     = %(A set of Rails validators for common instant messaging services)
-  gem.description = %(Adds ActiveModel validators for common instant messaging services like Skype and AIM.)
-  gem.email       = "git@timothymorgan.info"
-  gem.homepage    = "https://github.com/riscfuture/validates_im"
-  gem.authors     = ["Tim Morgan"]
-  gem.add_dependency "activerecord", ">= 3.0"
-  gem.files = %w[lib/**/* validates_im.gemspec README.textile LICENSE]
-end
-Jeweler::RubygemsDotOrgTasks.new
-
+require "bundler/gem_tasks"
 require "rspec/core/rake_task"
-RSpec::Core::RakeTask.new
 
-require "yard"
+RSpec::Core::RakeTask.new(:spec)
 
-# bring sexy back (sexy == tables)
-module YARD::Templates::Helpers::HtmlHelper
-  def html_markup_markdown(text)
-    markup_class(:markdown).new(text, :gh_blockcode, :fenced_code, :autolink, :tables, :no_intraemphasis).to_html
+begin
+  require "yard"
+  YARD::Rake::YardocTask.new(:doc) do |doc|
+    doc.options += ["--markup", "markdown"]
+    doc.options += ["--markup-provider", "redcarpet"]
+    doc.options += ["--protected", "--no-private"]
+    doc.options += ["--readme", "README.md"]
+    doc.options += ["--output-dir", "doc"]
+    doc.options += ["--title", "validates_im Documentation"]
+    doc.files = %w[lib/*_validator.rb README.md]
   end
+rescue LoadError
+  # YARD is optional
 end
 
-YARD::Rake::YardocTask.new("doc") do |doc|
-  doc.options << "-m" << "markdown"
-  doc.options << "-M" << "redcarpet"
-  doc.options << "--protected" << "--no-private"
-  doc.options << "-r" << "README.md"
-  doc.options << "-o" << "doc"
-  doc.options << "--title" << "validates_im Documentation"
-
-  doc.files = %w[lib/*_validator.rb README.md]
-end
-
-task(default: :spec)
+task default: :spec

@@ -2,17 +2,15 @@
 
 source "https://rubygems.org"
 
-# DEPENDENCIES
-gem "activerecord", ">= 3.1", require: "active_record"
-gem "activesupport", require: "active_support"
+gemspec
+
+group :development, :test do
+  gem "rake", "~> 13.0"
+  gem "rspec", "~> 3.13"
+end
 
 group :development do
-  # DEVELOPMENT
-  gem "jeweler"
-  gem "psych", "< 4.0" # jeweler incompatibility
-  gem "redcarpet", require: nil
-  gem "yard"
-
-  # TEST
-  gem "rspec"
+  gem "standard", require: false
+  gem "yard", require: false
+  gem "redcarpet", require: false
 end

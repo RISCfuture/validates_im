@@ -1,19 +1,7 @@
 # frozen_string_literal: true
 
-require "active_model"
-require "account_name_validator"
-
 module SpecSupport
   class TestAccountNameValidator < AccountNameValidator; end
-
-  class FakeModel
-    extend ActiveModel::Translation
-    extend ActiveModel::Naming
-
-    def errors = @errors ||= ActiveModel::Errors.new(self)
-    def self.lookup_ancestors = [self]
-    def read_attribute_for_validation(_) = "mock"
-  end
 end
 
 RSpec.describe AccountNameValidator do
@@ -108,12 +96,26 @@ RSpec.describe AccountNameValidator do
       expect(@model.errors[:field]).not_to be_empty
       expect(@model.errors[:field].first).to include("invalid_chars")
     end
+
+    it "rejects values whose only valid portion is a single line (multiline regex bypass)" do
+      SpecSupport::TestAccountNameValidator.valid_chars "A-Z"
+      SpecSupport::TestAccountNameValidator.new(attributes: :field).validate_each(@model, :field, "VALID\nBAD!")
+      expect(@model.errors[:field]).not_to be_empty
+      expect(@model.errors[:field].first).to include("invalid_chars")
+    end
   end
 
   describe ".first_char" do
     it "checks for an invalid first character" do
       SpecSupport::TestAccountNameValidator.first_char "[A-Z]"
       SpecSupport::TestAccountNameValidator.new(attributes: :field).validate_each(@model, :field, "abc")
+      expect(@model.errors[:field]).not_to be_empty
+      expect(@model.errors[:field].first).to include("invalid_first_char")
+    end
+
+    it "rejects a leading newline before an otherwise-valid first character (multiline bypass)" do
+      SpecSupport::TestAccountNameValidator.first_char "A-Z"
+      SpecSupport::TestAccountNameValidator.new(attributes: :field).validate_each(@model, :field, "\nA")
       expect(@model.errors[:field]).not_to be_empty
       expect(@model.errors[:field].first).to include("invalid_first_char")
     end

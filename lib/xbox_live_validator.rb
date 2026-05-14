@@ -5,14 +5,14 @@
 # > Gamertags can only contain letters, numbers, and spaces, and can't begin
 # > with a number.
 #
-# In addition we discovered that they have no minimum length but are no more
-# than 15 characters, and also cannot start with a space.
+# Xbox gamertags are 3-12 characters and cannot start with a space.
 #
 # The following error message keys are used to localize invalid screen names.
 #
 # |                           |                                       |
 # |:--------------------------|:--------------------------------------|
-# | `xbox_too_long`           | Gamertag is over 15 characters.       |
+# | `xbox_too_short`          | Gamertag is under 3 characters.       |
+# | `xbox_too_long`           | Gamertag is over 12 characters.       |
 # | `xbox_invalid_chars`      | Gamertag contains invalid characters. |
 # | `xbox_invalid_first_char` | Gamertag doesn't start with a letter. |
 #
@@ -29,7 +29,8 @@
 
 class XboxLiveValidator < AccountNameValidator
   error_key_prefix "xbox"
-  max_length 15
+  min_length 3
+  max_length 12
   valid_chars "A-Za-z0-9 "
   first_char "A-Za-z"
 end

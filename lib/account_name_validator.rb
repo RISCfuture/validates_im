@@ -126,7 +126,7 @@ class AccountNameValidator < ActiveModel::EachValidator
   #   format (e.g., "[A-Z0-9_]").
 
   def self.valid_chars(charlist)
-    add_validation(:invalid_chars) { |value| value =~ /^[#{charlist}]+$/ }
+    add_validation(:invalid_chars) { |value| value =~ /\A[#{charlist}]+\z/ }
   end
 
   # Enforces a valid set of characters for the first character of the account
@@ -136,6 +136,6 @@ class AccountNameValidator < ActiveModel::EachValidator
   #   format (e.g., "[A-Z0-9_]").
 
   def self.first_char(charlist)
-    add_validation(:invalid_first_char) { |value| value[0] =~ /^[#{charlist}]$/ }
+    add_validation(:invalid_first_char) { |value| value[0] =~ /\A[#{charlist}]\z/ }
   end
 end
