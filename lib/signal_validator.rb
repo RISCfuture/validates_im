@@ -29,7 +29,7 @@
 # | `:allow_nil` | If true, `nil` values are allowed.               |
 
 class SignalValidator < AccountNameValidator
-  FORMAT = /\A[A-Za-z][A-Za-z0-9_]*\.\d{2,}\z/.freeze
+  FORMAT = /\A[A-Za-z][A-Za-z0-9_]*\.\d{2,}\z/
 
   min_length 3
   max_length 32

@@ -36,7 +36,7 @@ class TelegramValidator < AccountNameValidator
   # Overrides {AccountNameValidator#validate_each} to strip an optional leading
   # `@` before applying validations.
   def validate_each(record, attribute, value)
-    if value.is_a?(String) && value.start_with?("@")
+    if value.kind_of?(String) && value.start_with?("@")
       value = value[1..]
     end
     super
