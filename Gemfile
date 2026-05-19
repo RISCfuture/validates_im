@@ -10,7 +10,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "standard", require: false
-  gem "yard", require: false
   gem "redcarpet", require: false
+  gem "yard", require: false
 end

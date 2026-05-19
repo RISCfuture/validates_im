@@ -22,7 +22,7 @@ RSpec.describe SignalValidator do
   end
 
   it "rejects usernames longer than 32 chars" do
-    expect(run("#{'a' * 28}.4242")).not_to be_empty
+    expect(run("#{"a" * 28}.4242")).not_to be_empty
   end
 
   it "rejects names without a discriminator" do

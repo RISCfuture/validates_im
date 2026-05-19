@@ -35,16 +35,16 @@ class MatrixValidator < ActiveModel::EachValidator
   MAX_LENGTH = 255
 
   # Localpart per the Matrix spec, restricted to the documented character set.
-  LOCALPART = %r{[a-z0-9._=/+\-]+}.freeze
+  LOCALPART = %r{[a-z0-9._=/+-]+}
 
   # A reasonably-strict hostname or IP literal, optionally followed by `:port`.
-  HOSTNAME_LABEL = /[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?/.freeze
-  HOSTNAME = /#{HOSTNAME_LABEL}(?:\.#{HOSTNAME_LABEL})*/.freeze
-  IPV4 = /(?:\d{1,3}\.){3}\d{1,3}/.freeze
-  IPV6 = /\[[0-9A-Fa-f:.]+\]/.freeze
-  SERVERNAME = /(?:#{IPV6}|#{IPV4}|#{HOSTNAME})(?::\d{1,5})?/.freeze
+  HOSTNAME_LABEL = /[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?/
+  HOSTNAME = /#{HOSTNAME_LABEL}(?:\.#{HOSTNAME_LABEL})*/
+  IPV4 = /(?:\d{1,3}\.){3}\d{1,3}/
+  IPV6 = /\[[0-9A-Fa-f:.]+\]/
+  SERVERNAME = /(?:#{IPV6}|#{IPV4}|#{HOSTNAME})(?::\d{1,5})?/
 
-  FORMAT = /\A@#{LOCALPART}:#{SERVERNAME}\z/.freeze
+  FORMAT = /\A@#{LOCALPART}:#{SERVERNAME}\z/
 
   def validate_each(record, attribute, value)
     return if options[:allow_nil] && value.nil?
@@ -56,8 +56,8 @@ class MatrixValidator < ActiveModel::EachValidator
       record.errors.add(attribute, options[:message] || record.errors.generate_message(attribute, :matrix_too_long))
     end
 
-    unless str.match?(FORMAT)
-      record.errors.add(attribute, options[:message] || record.errors.generate_message(attribute, :matrix_invalid_format))
-    end
+    return if str.match?(FORMAT)
+
+    record.errors.add(attribute, options[:message] || record.errors.generate_message(attribute, :matrix_invalid_format))
   end
 end
