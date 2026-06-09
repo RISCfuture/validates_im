@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [2.0.0] - 2026-05-14
 
 ### Added
+
 - `DiscordValidator` (`discord: true`) — modern Discord usernames (2-32 chars,
   `a-z0-9._`, no leading/trailing or consecutive periods, no discriminator).
 - `TelegramValidator` (`telegram: true`) — 5-32 chars, alphanumeric + underscore,
@@ -23,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GitHub Actions matrix CI across Ruby 3.1-3.4 and ActiveModel 7.0-8.0.
 
 ### Changed
+
 - Validator regex anchors use `\A` and `\z` instead of `^` and `$`, closing a
   multi-line bypass where an embedded newline would cause obviously-invalid
   values to pass.
@@ -33,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `bin/setup`, modern `Gemfile` / `Rakefile`.
 
 ### Fixed
+
 - `lib/validates_im.rb` no longer self-requires itself in an infinite loop.
 - Removed duplicate `add_dependency` entries (activerecord, rspec, yard, jeweler)
   and stale `README.textile` references in the gemspec.
@@ -40,6 +43,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (previous mismatch with `RedCloth` in the gemspec).
 
 ### Removed
+
 - Jeweler-managed gemspec template / `VERSION` text file.
 - The legacy `.travis.yml` and old `ruby.yml` workflow (superseded by `ci.yml`).
 

@@ -5,7 +5,7 @@ validates_im
 [![Gem Version](https://img.shields.io/gem/v/validates_im.svg)](https://rubygems.org/gems/validates_im)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-**Instant messenger account validators for ActiveModel / Rails**
+Instant messenger account validators for ActiveModel / Rails.
 
 `validates_im` is a small gem that gives you a collection of
 `ActiveModel::EachValidator`s for common instant-messaging and gaming-service
