@@ -14,7 +14,7 @@ begin
     doc.options += ["--readme", "README.md"]
     doc.options += ["--output-dir", "doc"]
     doc.options += ["--title", "validates_im Documentation"]
-    doc.files = %w[lib/*_validator.rb README.md]
+    doc.files = %w[lib/**/*.rb]
   end
 rescue LoadError
   # YARD is optional
