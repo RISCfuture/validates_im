@@ -18,8 +18,8 @@ Gem::Specification.new do |spec|
   spec.metadata = {
     "homepage_uri"          => spec.homepage,
     "documentation_uri"     => "https://riscfuture.github.io/validates_im/",
-    "source_code_uri"       => "#{spec.homepage}/tree/master",
-    "changelog_uri"         => "#{spec.homepage}/blob/master/CHANGELOG.md",
+    "source_code_uri"       => "#{spec.homepage}/tree/main",
+    "changelog_uri"         => "#{spec.homepage}/blob/main/CHANGELOG.md",
     "bug_tracker_uri"       => "#{spec.homepage}/issues",
     "rubygems_mfa_required" => "true"
   }
